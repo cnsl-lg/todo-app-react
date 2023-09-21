@@ -36,8 +36,13 @@ export default function App() {
   }
 
   function handleDeleteAllTask() {
-    setTasks([])
-    localStorage.removeItem('tasks')
+    const q = confirm('Are you sure want to delete all your tasks>')
+    if(q) {
+      setTasks([])
+      localStorage.removeItem('tasks')
+    } else {
+      return
+    }
   }
 
   function saveTasksToLocalStorage(updatedTasks) {
