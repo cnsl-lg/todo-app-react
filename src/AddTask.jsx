@@ -14,7 +14,13 @@ const AddTask = ({ handleAddTask }) => {
           placeholder="Add your task"
           className="w-full p-2 rounded-s-lg border-2 border-sky-500 focus:outline-none focus:ring focus:ring-sky-300"
           value={getTask}
-          onChange={e => setGetTask(e.target.value)} />
+          onChange={e => setGetTask(e.target.value)}
+          onKeyDown={e => {
+            if(e.keyCode === 13) {
+              handleAddTask(getTask)
+              setGetTask('')
+            }
+          }} />
       </label>
       <button
         type="button"
