@@ -46,12 +46,12 @@ const Task = ({ task, handleEditTask, handleDeleteTask }) => {
   if(isEditing) {
     todoContent = (
       <>
-        <label htmlFor="taskText" className="w-64">
+        <label htmlFor="taskText" className="w-full">
           <input
             type="text"
             id="taskText"
             placeholder="Add your task"
-            className="pb-1 bg-transparent border-b-2 border-slate-500 focus:outline-none"
+            className="w-full pb-1 bg-transparent border-b-2 border-slate-500 focus:outline-none"
             value={task.text}
             onChange={e => {
               handleEditTask({
@@ -59,7 +59,12 @@ const Task = ({ task, handleEditTask, handleDeleteTask }) => {
                 text: e.target.value
               })
             }} 
-            autoFocus/>
+            autoFocus
+            onKeyDown={e => {
+              if(e.keyCode === 13) {
+                setIsEditing(false)
+              }
+            }} />
         </label>
         <div className="action_button self-start flex gap-x-3">
           <button 
@@ -78,7 +83,7 @@ const Task = ({ task, handleEditTask, handleDeleteTask }) => {
   } else {
     todoContent = (
       <>
-        <p className="w-64">{task.text}</p>
+        <p>{task.text}</p>
         <div className="action_button self-start flex gap-x-3">
           <button 
             className="text-cyan-600 text-2xl px-1 bg-slate-100 rounded-md"
